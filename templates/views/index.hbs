@@ -1,65 +1,74 @@
 {{>header}}
 <div class="man_div">
     <div class="container center_div">
-        <h1>REGISTRATION FORM</h1>
-        <form action="/register" method="POST">
-            <div class="row">
-                <div class="col">
-                   
-                    <input type="text" class="form-control" name="fname" placeholder="First name"
-                        aria-label="First name">
-                </div>
-                <div class="col">
-                   
-                    <input type="text" class="form-control" name="lname" placeholder="Last name" aria-label="Last name">
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
+                <img src="images/login.png" class="img" alt="login image" />
+                <div class="loginbtn">
+                    <a href="/login" class="btn btn-danger">LOGIN</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    
-                    <input type="text" class="form-control" name="email" placeholder="Email" aria-label="email">
-                </div>
-                <div class="col">
-                    
-                    <input type="text" class="form-control" name="phone" placeholder="Mobile Number" aria-label="phone">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                  
-                    <input type="date" class="form-control" name="bday" placeholder="Birth Date"
-                        aria-label="Birth  Date">
-                </div>
-                <div class="col">
-                    
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
-                        <label class="form-check-label" for="inlineRadio1">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
-                        <label class="form-check-label" for="inlineRadio2">Female</label>
-                    </div>
-                </div>
-            </div>
-
+            <div class="col-md-9 col-lg-9">
+                <h1>REGISTRATION FORM</h1>
+                <form action="/register" method="POST">
                     <div class="row">
                         <div class="col">
-                           
-                            <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" aria-label="password">
+                
+                            <input type="text" class="form-control" name="fname" placeholder="First name" aria-label="First name">
                         </div>
                         <div class="col">
-                            
-                            <input type="password" class="form-control" name="cpassword" autocomplete="off" placeholder="Confirm your password"
-                                aria-label="confirm password">
+                
+                            <input type="text" class="form-control" name="lname" placeholder="Last name" aria-label="Last name">
                         </div>
                     </div>
-
-
-            <center>
-                <input type="submit" name="sub" class="btn btn-primary" value="Register">
-            </center>
-        </form>
+                    <div class="row">
+                        <div class="col">
+                
+                            <input type="text" class="form-control" name="email" placeholder="Email" aria-label="email">
+                        </div>
+                        <div class="col">
+                
+                            <input type="text" class="form-control" name="phone" placeholder="Mobile Number" aria-label="phone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                
+                            <input type="date" class="form-control" name="bday" placeholder="Birth Date" aria-label="Birth  Date">
+                        </div>
+                        <div class="col">
+                
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
+                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col">
+                
+                            <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password"
+                                aria-label="password">
+                        </div>
+                        <div class="col">
+                
+                            <input type="password" class="form-control" name="cpassword" autocomplete="off"
+                                placeholder="Confirm your password" aria-label="confirm password">
+                        </div>
+                    </div>
+                
+                
+                    <center>
+                        <input type="submit" name="sub" class="btn btn-primary" value="Register">
+                    </center>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -9,9 +9,9 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-// router.get("/register", (req, res) => {
-//   res.send("register");
-// });
+router.get("/login", (req, res) => {
+  res.render("login");
+});
 
 router.post("/register", async (req, res) => {
   try {
