@@ -9,8 +9,30 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+router.get("/home", (req, res) => {
+  res.render("home");
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const userDetail = await Registration.findOne({ email });
+    const verifyPassword = await bcrypt.compare(password, userDetail.password);
+
+    if (verifyPassword) {
+      res.redirect("/home");
+    } else {
+      res.status(201).send("Invalid Password");
+    }
+  } catch (error) {
+    res.status(404).send("invalid email");
+  }
 });
 
 router.post("/register", async (req, res) => {
@@ -33,7 +55,7 @@ router.post("/register", async (req, res) => {
       const token = await userdata.generateAuthToken();
 
       const result = await userdata.save();
-      res.status(201).render("home");
+      res.status(201).redirect("/home");
     } else {
       res.send("password and confirm password are not matching");
     }
