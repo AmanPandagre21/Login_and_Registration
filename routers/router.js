@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 require("../src/db/conn");
 const Registration = require("../src/model/main");
 
@@ -27,6 +28,10 @@ router.post("/register", async (req, res) => {
         gender: req.body.gender,
         password: password,
       });
+
+      // generating token
+      const token = await userdata.generateAuthToken();
+
       const result = await userdata.save();
       res.status(201).render("home");
     } else {
