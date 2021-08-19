@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../src/middleware/auth");
 require("../src/db/conn");
 const Registration = require("../src/model/main");
 
@@ -9,7 +10,7 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/home", (req, res) => {
+router.get("/home", auth, (req, res) => {
   res.render("home");
 });
 
@@ -26,7 +27,12 @@ router.post("/login", async (req, res) => {
     const verifyPassword = await bcrypt.compare(password, userDetail.password);
 
     if (verifyPassword) {
-      res.redirect("/home");
+      const token = await userDetail.generateAuthToken();
+      res.cookie("jwt", token, {
+        // expires: new Date(Date.now() + 2000),
+        httpOnly: true,
+      });
+      res.status(201).redirect("/home");
     } else {
       res.status(201).send("Invalid Password");
     }
@@ -53,6 +59,10 @@ router.post("/register", async (req, res) => {
 
       // generating token
       const token = await userdata.generateAuthToken();
+
+      res.cookie("jwt", token, {
+        httpOnly: true,
+      });
 
       const result = await userdata.save();
       res.status(201).redirect("/home");
