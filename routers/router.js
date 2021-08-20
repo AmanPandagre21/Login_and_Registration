@@ -11,11 +11,28 @@ router.get("/", (req, res) => {
 });
 
 router.get("/home", auth, (req, res) => {
-  res.render("home");
+  const data = req.userData;
+
+  res.render("home", {
+    fname: data.firstname,
+  });
 });
 
 router.get("/login", (req, res) => {
   res.render("login");
+});
+
+router.get("/logout", auth, async (req, res) => {
+  try {
+    req.userData.tokens = req.userData.tokens.filter((ele) => {
+      return ele.token !== req.token;
+    });
+    res.clearCookie("jwt");
+    await req.userData.save();
+    res.render("login");
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 router.post("/login", async (req, res) => {
